@@ -1,6 +1,8 @@
 # BestHPCCoAWS
 Scripts for configuring and deploying an HPCC on AWS that executes fast.
 
+On 2015/04/07 Added the capability to require a unique username and password, that you name, to log into ECL Watch and ECL IDE. I also updated the documentation, SetupBestHPCCoAWS.pdf to reflect this new capability.
+
 On 2015/02/19 added the document, SetupBestHPCCoAWS.pdf, which describes in detail how to setup the HPCC System on AWS.
 
 Detailed documentation still needs to be written. But, the following is a list of steps to deploy a high performing HPCC cluster on AWS
