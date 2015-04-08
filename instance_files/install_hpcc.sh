@@ -19,8 +19,8 @@ echo "sudo rpm -iv --nodeps $hpcc_platform"
 sudo rpm -iv --nodeps $hpcc_platform
 
 #Has needs to pass in 'y' to confirm overwrite
-echo "sudo /opt/HPCCSystems/sbin/keygen.sh"
-sudo /opt/HPCCSystems/sbin/keygen.sh
+#echo "sudo /opt/HPCCSystems/sbin/keygen.sh"
+#sudo /opt/HPCCSystems/sbin/keygen.sh
 
 cd ..
 
