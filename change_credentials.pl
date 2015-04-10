@@ -21,8 +21,8 @@ close(IN);
 # Change credentials on every instance of HPCC
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"./change_credentials.sh $username $password\"\n");
-  system("ssh -t -i $pem $user\@$ip \"./change_credentials.sh $username $password\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"./change_credentials.sh $username $password\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"./change_credentials.sh $username $password\"");
 }
 
 

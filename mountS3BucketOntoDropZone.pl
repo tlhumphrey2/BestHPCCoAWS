@@ -18,5 +18,5 @@ open(IN, $public_ips) || die "Can't open for input: \"$public_ips\"\n";
 $esp = <IN>; chomp $esp;
 close(IN);
 
-print("ssh -t -i $pem $user\@$esp \"bash $outfolder/mountS3Bucket.sh\"\n");
-system("ssh -t -i $pem $user\@$esp \"bash $outfolder/mountS3Bucket.sh\"");
+print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash $outfolder/mountS3Bucket.sh\"\n");
+system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash $outfolder/mountS3Bucket.sh\"");

@@ -15,8 +15,8 @@ close(IN);
 # push2hpcc.sh on all hpcc instances
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"./push2hpcc.sh\"\n");
-  system("ssh -t -i $pem $user\@$ip \"./push2hpcc.sh\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"./push2hpcc.sh\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"./push2hpcc.sh\"");
 }
 
 
