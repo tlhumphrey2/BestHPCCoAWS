@@ -24,7 +24,7 @@ require "getConfigurationFile.pl";
     chomp;
     my $ip=$_;
     
-    print("ssh -t -i $pem $user\@$ip \"perl $outfolder/setup_zz_zNxlarge_disks.pl\"\n");
-    system("ssh -t -i $pem $user\@$ip \"perl $outfolder/setup_zz_zNxlarge_disks.pl\"");
+    print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"perl $outfolder/setup_zz_zNxlarge_disks.pl\"\n");
+    system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"perl $outfolder/setup_zz_zNxlarge_disks.pl\"");
 
  }

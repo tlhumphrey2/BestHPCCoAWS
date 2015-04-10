@@ -27,8 +27,8 @@ close(IN);
 #Stop HPCC on all instances.
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop && sudo service dafilesrv stop\"\n");
-  system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop && sudo service dafilesrv stop\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop && sudo service dafilesrv stop\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop && sudo service dafilesrv stop\"");
 }
 
 

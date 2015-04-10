@@ -36,14 +36,14 @@ ENVIRONMENT VARIABLES USED BY THIS CODE
     if ( scalar(@CopyJustThis) > 0 ){
        foreach my $CopyJustThis (@CopyJustThis){
            my $CopyThis = "$infolder/$CopyJustThis";
-           print("scp -i $pem $CopyThis $user\@$ip:$outfolder\n");
-           system("scp -i $pem $CopyThis $user\@$ip:$outfolder");
+           print("scp -o stricthostkeychecking=no -o -i $pem $CopyThis $user\@$ip:$outfolder\n");
+           system("scp -o stricthostkeychecking=no -i $pem $CopyThis $user\@$ip:$outfolder");
        }
     }
     else{
        my $CopyThis = "$infolder/*";
-       print("scp -i $pem $CopyThis $user\@$ip:$outfolder\n");
-       system("scp -i $pem $CopyThis $user\@$ip:$outfolder");
+       print("scp -o stricthostkeychecking=no -i $pem $CopyThis $user\@$ip:$outfolder\n");
+       system("scp -o stricthostkeychecking=no -i $pem $CopyThis $user\@$ip:$outfolder");
     }
 
  }

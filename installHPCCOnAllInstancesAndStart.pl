@@ -28,32 +28,30 @@ while(<IN>){
    $nInstances++;
    $esp_ip=$ip if $. == 1;
     
-   print("ssh -t -i $pem $user\@$ip \"bash install_hpcc.sh\"\n");
-   system("ssh -t -i $pem $user\@$ip \"bash install_hpcc.sh\"");
+   print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"bash install_hpcc.sh\"\n");
+   system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"bash install_hpcc.sh\"");
 }
-
-#waitForAllInstallToComplete();
  
 my $nSupport = 1;
 my $nNonSupport = ($nInstances==1)? 1 : $nInstances-1;
  
 # On esp, configure hpcc with 1 thor slave node per instance. NOTE. VERY IMPORTANT THAT THIS INITIAL CONFIGURE HAS ONLY 1 NODE PER
-print("ssh -t -i $pem $user\@$esp_ip \"bash configureHPCC.sh 0 1\"\n");
-system("ssh -t -i $pem $user\@$esp_ip \"bash configureHPCC.sh 0 1\"");
+print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp_ip \"bash configureHPCC.sh 0 1\"\n");
+system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp_ip \"bash configureHPCC.sh 0 1\"");
 
 #Start HPCC on all instances. But, with the master the last to start
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
-  system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"");
 }
 #----------------------------------------------------------------------------------
 sub waitForAllInstallToComplete{
    my $NumberInstallsComplete=0;
    while ( $NumberInstallsComplete < scalar(@public_ips) ){
       foreach my $ip (@public_ips){
-          print STDERR "ssh -t -i $pem $user\@$ip \"[ -f /home/$user/CompletedInstallHpcc.txt ] && echo \\\"File exists\\\" || echo \\\"File does not exists\\\"\"\n";
-          my $_=`ssh -t -i $pem $user\@$ip "[ -f /home/$user/CompletedInstallHpcc.txt ] && echo \"File exists\" || echo \"File does not exists\""`;
+          print STDERR "ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"[ -f /home/$user/CompletedInstallHpcc.txt ] && echo \\\"File exists\\\" || echo \\\"File does not exists\\\"\"\n";
+          my $_=`ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip "[ -f /home/$user/CompletedInstallHpcc.txt ] && echo \"File exists\" || echo \"File does not exists\""`;
           if ( /File exists/ ){
              $NumberInstallsComplete++ if ! $AlreadyComplete{$ip};
              $AlreadyComplete{$ip}=1;

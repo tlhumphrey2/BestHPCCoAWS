@@ -25,16 +25,16 @@ $pem = shift @ARGV;# arg 3
     my $ip=$_;
     push @public_ips, $ip;
 
-    print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop\"\n");
-    system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop\"");
+    print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop\"\n");
+    system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop\"");
     
-    print("ssh -t -i $pem $user\@$ip \"perl $outfolder/updateSystemFilesForHPCC.pl\"\n");
-    system("ssh -t -i $pem $user\@$ip \"perl $outfolder/updateSystemFilesForHPCC.pl\"");
+    print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"perl $outfolder/updateSystemFilesForHPCC.pl\"\n");
+    system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"perl $outfolder/updateSystemFilesForHPCC.pl\"");
  }
  
 #Start HPCC on all instances. But, with the master the last to start
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
-  system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"");
 }

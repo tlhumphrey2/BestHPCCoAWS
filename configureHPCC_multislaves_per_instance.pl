@@ -33,18 +33,21 @@ close(IN);
 #Stop HPCC on all instances.
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop\"\n");
-  system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init stop\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init stop\"");
 }
 
-print "ssh -t -i $pem $user\@$esp \"bash configureHPCC.sh\n";
-system("ssh -t -i $pem $user\@$esp \"bash configureHPCC.sh\"");
+print "ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash configureHPCC.sh\n";
+system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash configureHPCC.sh\"");
+
+print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash mkNewKeysAndSaveOldKeysThenDistributeThem.sh\"\n");
+system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$esp \"bash mkNewKeysAndSaveOldKeysThenDistributeThem.sh\"");
 
 #Start HPCC on all instances. But, with the master the last to start
 for( my $i=$#public_ips; $i >= 0; $i--){ 
   my $ip=$public_ips[$i];
-  print("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
-  system("ssh -t -i $pem $user\@$ip \"sudo service hpcc-init start\"");
+  print("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"\n");
+  system("ssh -t -o stricthostkeychecking=no -i $pem $user\@$ip \"sudo service hpcc-init start\"");
 }
 
 
