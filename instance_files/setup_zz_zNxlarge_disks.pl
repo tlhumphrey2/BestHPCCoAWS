@@ -60,6 +60,9 @@ if ( scalar(@xvdlines) > 0 ){
    print("sudo mkdir -p /var/lib/HPCCSystems && sudo mount /dev/md0 /var/lib/HPCCSystems\n");
    system("sudo mkdir -p /var/lib/HPCCSystems && sudo mount /dev/md0 /var/lib/HPCCSystems");
 }
+else{
+   print "NO SSD STORAGE EXISTS.\n";
+}
 #----------------------------------------------------------------
 # SUBROUTINES
 #----------------------------------------------------------------

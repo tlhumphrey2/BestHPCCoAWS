@@ -18,10 +18,6 @@ wget $hpcc_full_path
 echo "sudo rpm -iv --nodeps $hpcc_platform"
 sudo rpm -iv --nodeps $hpcc_platform
 
-#Has needs to pass in 'y' to confirm overwrite
-echo "sudo /opt/HPCCSystems/sbin/keygen.sh"
-sudo /opt/HPCCSystems/sbin/keygen.sh
-
 cd ..
 
 #Install HTTPD passwd tool
